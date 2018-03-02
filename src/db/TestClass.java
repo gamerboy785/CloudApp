@@ -1,32 +1,22 @@
 package db;
+
 import java.sql.*;
+import models.*;
 
 public class TestClass {
 	
 	public static void main(String[] args) throws Exception {
-		try {
-			String driver = "com.mysql.jdbc.Driver";
-			String url = "jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_4cc5e175fd48b99?";
-			String username = "b7c6cf5b950cd5";
-			String password = "93b668d4";
-			Class.forName(driver);
-			Connection conn = DriverManager.getConnection(url, username, password);
-			System.out.println("Got connected");
-			PreparedStatement pst = conn.prepareStatement("select * from users where firstname = ?");
-			pst.setString(1, "Hamza");
-			ResultSet result = pst.executeQuery();
-			if (result != null) {
-				while(result.next()) {
-					String lastname = result.getString("lastname");
-					String user = result.getString("username");
-					System.out.println("lastname:" + lastname);
-					System.out.println("username" + user);
-				}
-			}
-		}
-		catch(Exception e) {
-			System.out.println(e.getMessage());
+		DBHandler db = DBHandler.shared;
+		User user =db.getUser("hamza.ali@gmail.com", "12345");
+		if (user != null) {
+			System.out.println(user.get_id());
+			System.out.println(user.getFirstName());
+			System.out.println(user.getLastName());
+			System.out.println(user.getGender());
+			System.out.println(user.getUsername());
+			System.out.println(user.getPassword());
+			System.out.println(user.getProfileImage());
+			System.out.println(user.getRole());
 		}
 	}
-	
 }

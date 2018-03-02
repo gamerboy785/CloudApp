@@ -1,6 +1,8 @@
 package db;
 import java.sql.*;
 
+import models.*;
+
 public class DBHandler {
 
 	public static DBHandler shared = new DBHandler();
@@ -9,7 +11,6 @@ public class DBHandler {
 	private static final String USERNAME = "b7c6cf5b950cd5";
 	private static final String PASSWORD = "93b668d4";
 	private Connection conn = null;
-	
 	{
 		try {
 			getConnection();
@@ -44,6 +45,27 @@ public class DBHandler {
 		}
 		return false;
 		
+	}
+	
+	public User getUser(String username, String password) throws Exception {
+		
+		PreparedStatement pst = conn.prepareStatement("select * from users where username = ? and password = ?");
+		pst.setString(1, username);
+		pst.setString(2, password);
+		User user = null;
+		ResultSet rs = pst.executeQuery();
+		if( rs.last()) {
+			user = new User();
+			user.set_id(rs.getInt("id"));
+			user.setFirstName(rs.getString("firstName"));
+			user.setLastName(rs.getString("lastName"));
+			user.setGender(rs.getString("gender"));
+			user.setUsername(username);
+			user.setPassword(password);
+			user.setProfileImage(rs.getString("profile"));
+			user.setRole(rs.getInt("role"));		
+		}
+		return user;
 	}
 	
 }

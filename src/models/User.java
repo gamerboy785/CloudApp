@@ -5,11 +5,10 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private String role;
+	private int role;
 	private String username;
 	private String password;
 	private String profileImage;	
-	private String active;
 	public int get_id() {
 		return _id;
 	}
@@ -34,10 +33,10 @@ public class User {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getRole() {
+	public int getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 	public String getUsername() {
@@ -58,14 +57,8 @@ public class User {
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
-	public String getActive() {
-		return active;
-	}
-	public void setActive(String active) {
-		this.active = active;
-	}
 	
-	public User(int _id, String firstName, String lastName, String gender, String role, String username,
+	public User(int _id, String firstName, String lastName, String gender, int role, String username,
 			String password, String profileImage) {
 		super();
 		this._id = _id;

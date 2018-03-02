@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     
-    <script src="js/jquery-min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<style>
 		body{   background-image:url(images/img1.jpg);
@@ -38,7 +38,6 @@
 				</form>
 				<p class = "nav navbar-left">Do not have an account?									
 					<button id = "signUpBtn" class = "btn btn-success" data-toggle = "modal" data-target = "#signUpWindow">SignUp</button> 
-					<button id = "viewRooms" class = "btn btn-info">View rooms as guest</button>
 				</p>
 				
 			</div>
@@ -75,14 +74,6 @@
   						 	<input type="radio" name="gender" value="F"> Female
   						 	<br>
   						 	<br>
-							<label for = "role">Select a role </label>
-							<select name = "role">
-								<option value = "A" selected >Administrator</option>
-								<option value = "M">Manager</option>
-								<option value = "C">Customer</option>
-							</select>
-							<br>
-							<br>
 							<label for = "new_username">userID:</label>
 							<input type = "text" name = "new_username" id = "new_username" />
 							<label for = "new_password">password:</label>
