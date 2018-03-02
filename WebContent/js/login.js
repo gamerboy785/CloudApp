@@ -148,7 +148,7 @@ $(document).ready(function(){
 				}
 				else if(data.role == "A")
 				{
-					 window.location.href = "http://localhost:8080/cloudapp/adminHome.jsp";
+					 window.location.href = window.location.href + "adminHome.jsp";
 				}
 				else
 				{
