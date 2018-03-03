@@ -148,7 +148,7 @@ $(document).ready(function(){
 				}
 				else if(data.role == "A")
 				{
-					 window.location.href = "https://guarded-stream-37896.herokuapp.com/adminHome.jsp";
+					 window.location.href = "http://localhost:8080/cloudapp/adminHome.jsp";
 				}
 				else
 				{

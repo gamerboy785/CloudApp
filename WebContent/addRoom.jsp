@@ -1,8 +1,8 @@
 <%@ page errorPage="error.jsp" %>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "models.*"  %>
-<%@ page import = "db.*" %>
+<%@ page import = "db.*" %>    
+<%@ page import = "models.*" %>
   
 <!DOCTYPE html >
 <html>
@@ -11,7 +11,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href = "css/sidebar.css" type = "text/css">
-    <link rel="stylesheet" href = "css/home.css" type = "text/css">    
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -35,9 +34,9 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li ><a href="http://localhost:8080/cloudapp/adminHome.jsp" class = "btn" style = "background-color:#006699" role = "button">Home</a></li>
-                <li ><a href="http://localhost:8080/cloudapp/addRoom.jsp" class = "btn" role = "button">Add Room</a></li>
-            	<li><a href="http://localhost:8080/cloudapp/viewRooms.jsp" class = "btn" role = "button">View Rooms</a></li>          	
+                <li ><a href="http://localhost:8080/cloudapp/adminHome.jsp" class = "btn" role = "button">Home</a></li>
+                <li ><a href="http://localhost:8080/cloudapp/addRoom.jsp" class = "btn" style = "background-color:#006699" role = "button">Add Room</a></li>
+     			<li><a href="http://localhost:8080/cloudapp/viewRooms.jsp" class = "btn" role = "button">View Rooms</a></li>          	
             </ul>     
         </div>
 		
@@ -62,8 +61,9 @@
 					Welcome, &nbsp 	
 					<jsp:getProperty property="firstName" name="user"/>	
 				</p>
-     		</div>
+			</div>
 		</nav>
+	
         <div id="page-content-wrapper">
         		<div id = "heading" class = "col-md-10" style = "background-color:#006699; color:white; margin-left:95px;" >
    					<div class = "container-fluid">
@@ -138,87 +138,49 @@
  				</div>
  		
     
-    	<div class = "container" style = "padding-left: 100px;">
- 				<div class = "col-md-7" style = "color:white; background:green;">
- 					<h3>Testimonials</h3>
+    		<div class = "container" style = "padding-left: 100px;">
+ 				<div class = "col-md-8" style = "background-color:white;">
+ 					<div style = "background-color:#000000">
+ 						<h1 style = "color:white">Room Information</h1>
+ 					</div>
+ 					<div style = "background-color:#eeeeee; padding:5px; margin-bottom:10px;">	
+ 						<form id = "addRoomInput">
+ 							<label for = "roomImage">Room Image Link:</label>
+ 							<input type = "text" name = "roomImage" maxlength="250" size="92" id = "roomImage" />
+ 							<br>
+ 							<label for = "roomType">RoomType: </label>
+						 	<input type="radio" name="roomType" value="Single" checked > Single
+  						 	<input type="radio" name="roomType" value="Double"> Double  						 	
+  						 	<input type="radio" name="roomType" value="Suite"> Suite
+  						 	<br>
+  						 	<label for = "roomPrice">RoomPrice:</label>
+  						 	<input name = "roomPrice" id = "roomPrice" />
+  						 	<br>
+  						 	<label>Features:</label>
+  						 	<br>
+  						 	Balcony: <input type = "radio" name = "balcony" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "balcony" value = "No" />No  
+  						 	<br>
+  						 	HD SetBox: <input type = "radio" name = "setBox" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "setBox" value = "No" />No  
+  						 	<br>
+  						 	Central Cooling System: <input type = "radio" name = "coolingSystem" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "coolingSystem" value = "No" />No  
+  						 	<div class = "text-danger" id = "addRoomError">
+  						 	</div>
+  						 	<br>
+ 							<input type = "submit" value = "Add Room" class = "btn btn-success"/>
+ 							<div class = "text-success" id = "addRoomSuccess">
+ 							</div>
+ 						</form> 
+ 					</div>
  				</div>
- 				<div class = "col-md-7" style = "background:#faebd7">
- 					<br>
- 					<blockquote>
- 						"I rented a room from here once... they have some amazing deals"
- 						
- 						<footer style = "float:right">
- 							<cite>	Emma Watson </cite>
- 							<img src = "images/emma.jpg" alt = "person" style = "height:100px; width:80px;" class = "img img-circle" />
- 						</footer>
- 					</blockquote>
- 					
- 					<br>
- 					<br>
- 					<br>
- 					<br>
- 					<br>
- 					<blockquote>
- 						"By far the best hotel room booking service in Vegas <3"
- 						
- 						<footer style = "float:right">
- 							<cite>Emma Roberts</cite>
- 							<img src = "images/emma2.jpg" alt = "person" style = "height:100px; width:80px;" class = "img img-circle" />
- 						</footer>
- 					</blockquote>
- 					
- 					<br>
- 				</div>
- 				
- 				<div class = "col-md-1">
- 				</div>
-           
-           		<div class = "col-md-3 amet-sed">
-           			<blockquote class = "my-quote" style = "color:#006699; background:#f0ffff">
-           				Now, one thing I tell everyone is learn about hotels. Repeat after me: hotel provides the highest returns, the greatest values and the least risk. 
-						<br>
-						<footer style = "float:right;">
-							<cite>Armstrong Williams</cite>
-						</footer>
-           			</blockquote>
-           		</div>
-           
-     		 </div>
-    	
-    		 <div class = "container" style = " padding-left:  100px;">
-     		 	<div class = "col-md-7" style = "background:#faebd7">
-     		 		<br>
- 					<blockquote>
- 						"Renting hotel rooms has never been this easy, thankyou THE NEW BOSTON !"
-					<br>
- 						<footer style = "float:right;">
- 							<cite>
- 								Wayne Rooney
- 							</cite>
-							<img class = "img img-circle" src = "images/rooney.jpg" alt = "person" style = " height:100px; width:80px;" />	
- 						</footer>
- 					</blockquote>
-     		 	</div>
-     		 	<div class = "col-md-1">
-   
-     		 	</div>
-     		 	<div class = "col-md-3 amet-sed">
-     				<blockquote class = "my-quote" style = "color:#006699; background:#f0ffff">
-						If you've driven over to the gay section of Las Vegas, it's like a golf course... hotel room values go 'boom!' 
-						<br>
-						<footer style = "float:right;">
-							<cite>Adam Carolla</cite>
-						</footer>
-           			</blockquote> 		
-     		 	</div>
-     		 </div>
+     		</div>
     
         </div>
            
       </div>
    
-      <script src = "js/adminHome.js" type = "text/javascript" >
-      
+   	
+   	  <script src = "js/home.js" type = "text/javascript"></script>
+      <script src = "js/addRoom.js" type = "text/javascript" >  
       </script>
       
       

@@ -1,5 +1,6 @@
 package db;
 import java.sql.*;
+import java.util.ArrayList;
 
 import models.*;
 
@@ -10,8 +11,8 @@ public class DBHandler {
 	private static final String URL = "jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_4cc5e175fd48b99?";
 	private static final String USERNAME = "b7c6cf5b950cd5";
 	private static final String PASSWORD = "93b668d4";
-	private Connection conn = null;
-	{
+	private static Connection conn = null;
+	static {
 		try {
 			getConnection();
 		} catch (Exception e) {
@@ -25,7 +26,7 @@ public class DBHandler {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void getConnection() throws Exception {
+	public static void getConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		System.out.println("Connected to mysql database");
@@ -46,6 +47,48 @@ public class DBHandler {
 		return false;
 		
 	}
+	
+	public boolean addRoom(Room room) {
+		try {
+			PreparedStatement pst = conn.prepareStatement("insert into rooms (roomImage,roomType,roomPrice,balcony,setBox,coolingSystem)"
+					+ " values(?,?,?,?,?,?) ");
+			pst.setString(1,room.getRoomImage());
+			pst.setString(2, room.getRoomType());
+			pst.setDouble(3, room.getRoomPrice());
+			pst.setString(4, room.getBalcony());
+			pst.setString(5, room.getSetBox());
+			pst.setString(6, room.getCoolingSystem());
+			pst.executeUpdate();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+	
+	public ArrayList<Room> getRooms() {
+		ArrayList<Room>rooms = new ArrayList<Room>();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery("select * from rooms");
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String roomImage = rs.getString("roomImage");
+				String roomType = rs.getString("roomType");
+				Double roomPrice = rs.getDouble("roomPrice");
+				String balcony = rs.getString("balcony");
+				String setBox = rs.getString("setBox");
+				String coolingSystem = rs.getString("coolingSystem");
+				Room r = new Room(id,roomImage,roomType,roomPrice,balcony,setBox,coolingSystem);
+				rooms.add(r);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return rooms;
+	}         
 	
 	public User getUser(String username, String password) throws Exception {
 		

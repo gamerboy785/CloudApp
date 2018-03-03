@@ -22,7 +22,7 @@
 		</div>
 	</nav>
 	<h3>
-		Session expired, please wait while we direct you to the login page, or <mark> <a href = "http://localhost:9090/WebProject/">click here</a></mark>	
+		Session expired, please wait while we direct you to the login page, or <mark> <a href = "http://localhost:8080/cloudapp/">click here</a></mark>	
 	</h3>
 	<div class = "col-md-3">
 		<img alt = "ajax-loader" src = "images/ajax-loader.gif" />
@@ -33,7 +33,7 @@
 			
 			function reDirect(){
 				
-				window.location.href = "http://localhost:9090/WebProject/";
+				window.location.href = "http://localhost:8080/cloudapp/";
 			}
 			
 			setTimeout(reDirect,3000);
