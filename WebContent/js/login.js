@@ -1,12 +1,5 @@
 $(document).ready(function(){
 	
-	
-	$("#viewRooms").click(function(){
-		
-		window.location.href = "http://localhost:9090/WebProject/viewRoomsGuest.jsp";
-		
-	});
-	
 	function validateUsername(username)
 	{
 		var count = 0;
@@ -90,7 +83,7 @@ $(document).ready(function(){
 				}
 				else 
 				{
-					document.getElementById("message").innerHTML = "Account registered, an email has been sent for activation!";
+					document.getElementById("message").innerHTML = "Account created successfully";
 				}
 				var img = document.getElementById("smiley");
 				img.src = data.src;
@@ -152,7 +145,7 @@ $(document).ready(function(){
 				}
 				else
 				{
-					window.location.href = "http://localhost:8080/WebProject/customerHome.jsp";
+					window.location.href = "http://localhost:8080/cloudapp/customerHome.jsp";
 				}
 			}
 				

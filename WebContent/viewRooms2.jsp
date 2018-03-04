@@ -181,7 +181,7 @@
  					
  					<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; padding-bottom:100px;">
  						<%for(int i = s,j=0;i<rooms.size() && i<(s+2);i++,j++){ %>
- 							<img src = "<%=rooms.get(i).getRoomImage()%>" height = 180px width = 310px style = "margin:20px" />
+ 							<img src = "<%=rooms.get(i).getRoomImage()%>" id = "roomImg<%=j+1%>" height = 180px width = 310px style = "margin:20px" />
  							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
  									<th>
@@ -227,19 +227,22 @@
  									<th>
  										Price
  									</th>
- 									<td id = "setBox<%=j+1%>">
+ 									<td id = "price<%=j+1%>">
  										<%=rooms.get(i).getRoomPrice() %>
  									</td>
  								</tr>
  							</table>
- 							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-success">Check Availability</button>
+ 							<%if(user.getRole() == 1) { %>
+ 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:80px;">Edit Room</button>
+ 							 <% } %>
+ 							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-info">Check Availability</button>
  							<br>
  						<%} %>
  					</div>
  					
  				<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; margin-bottom:20px;">
  						<%for(int i = s+2,j=2;i<rooms.size() && i<(s+4);i++,j++){ %>
- 							<img src = "<%=rooms.get(i).getRoomImage()%>" height = 150px width = 310px style = "margin:20px" />
+ 							<img src = "<%=rooms.get(i).getRoomImage()%>" id = "roomImg<%=j+1%>" height = 150px width = 310px style = "margin:20px" />
  							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
  									<th>
@@ -285,12 +288,15 @@
  									<th>
  										Price
  									</th>
- 									<td id = "setBox<%=j+1%>">
+ 									<td id = "price<%=j+1%>">
  										<%=rooms.get(i).getRoomPrice() %>
  									</td>
  								</tr>
  							</table>
- 							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-success">Check Availability</button>
+ 							<%if(user.getRole() == 1) { %>
+ 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:80px;">Edit Room</button>
+ 							 <% } %>
+ 							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-info">Check Availability</button>
  							<br>
  							<%} %>
  					</div>
@@ -313,7 +319,52 @@
  				
  </div>
 </div>
-   
+   <div class = "modal fade" id = "my-modal">
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+					<!-- header -->
+					<div class = "modal-header" style = "background:#006699;">
+						<button type = "button" class = "close" data-dismiss = "modal">&times;</button>
+						<h1 style = "color:white;">Edit Info</h1>
+					</div>
+				
+				<!-- body -->
+					<div class = "modal-body">
+						<form id = "editRoomInput" >
+ 							<label for = "roomType">RoomType: </label>
+						 	<input type="radio" name="roomType" value="Single" checked > Single
+  						 	<input type="radio" name="roomType" value="Double"> Double  						 	
+  						 	<input type="radio" name="roomType" value="Suite"> Suite
+  						 	<br>
+  						 	<label for = "roomImage">RoomImage Link:</label>
+  						 	<input name = "roomImage" id = "roomImage" maxlength = "200" size = "80" />
+  						 	<label for = "roomPrice">RoomPrice:</label>
+  						 	<input name = "roomPrice" id = "roomPrice" />
+  						 	<br>
+  						 	<label>Features:</label>
+  						 	<br>
+  						 	Balcony: <input type = "radio" name = "balcony" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "balcony" value = "No" />No  
+  						 	<br>
+  						 	HD SetBox: <input type = "radio" name = "setBox" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "setBox" value = "No" />No  
+  						 	<br>
+  						 	Central Cooling System: <input type = "radio" name = "coolingSystem" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "coolingSystem" value = "No" />No  
+  						 	<div class = "text-danger" id = "editRoomError">
+  						 	</div>
+  						 	<br>
+ 							<input type = "submit" value = "Edit" class = "btn btn-success"/>
+ 							<div class = "text-success" id = "editRoomSuccess">
+ 							</div>
+ 						</form> 		
+					</div>
+				
+				<!-- footer -->
+					<div class = "modal-footer">
+						<button class = "btn btn-info" data-dismiss = "modal" data-target = "#my-modal">Close</button>
+					</div>
+				
+			</div>
+		</div>
+	</div>
     <div class = "modal fade" id = "avail_modal">
 			<div class = "modal-dialog">
 				<div class = "modal-content">

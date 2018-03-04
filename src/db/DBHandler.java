@@ -88,7 +88,27 @@ public class DBHandler {
 			System.out.println(e.getMessage());
 		}
 		return rooms;
-	}         
+	}    
+	
+	public boolean addUser(User user) {
+		try {
+			PreparedStatement pst = conn.prepareStatement("insert into users (username,password,profile,gender,firstname,lastname,role)"
+					+ " values(?,?,?,?,?,?,?) ");
+			pst.setString(1,user.getUsername());
+			pst.setString(2, user.getPassword());
+			pst.setString(3, user.getProfileImage());
+			pst.setString(4,user.getGender());
+			pst.setString(5,user.getFirstName());
+			pst.setString(6, user.getLastName());
+			pst.setInt(7, user.getRole());
+			pst.executeUpdate();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
 	
 	public User getUser(String username, String password) throws Exception {
 		
@@ -109,6 +129,35 @@ public class DBHandler {
 			user.setRole(rs.getInt("role"));		
 		}
 		return user;
+	}
+	
+	public boolean updateRoom(Room room) {
+		
+		try {
+			PreparedStatement pst = conn.prepareStatement("update rooms set roomImage = ?, roomType = ?,roomPrice = ?,balcony = ?,setBox = ?,coolingSystem = ? where id = ?");
+			pst.setString(1, room.getRoomImage());
+			pst.setString(2, room.getRoomType());
+			pst.setDouble(3,room.getRoomPrice());
+			pst.setString(4, room.getBalcony());
+			pst.setString(5, room.getSetBox());
+			pst.setString(6, room.getCoolingSystem());
+			pst.setInt(7, room.get_id());
+			pst.executeUpdate();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+	
+	public boolean hasUser(String username) throws Exception {
+		PreparedStatement pst = conn.prepareStatement("select * from users where username = ?" );
+		pst.setString(1, username);
+		if (pst.executeQuery().last()) {
+			return true;
+		}
+		return false;
 	}
 	
 }
