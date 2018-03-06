@@ -27,6 +27,7 @@
 			throw new Exception();
 		  %>
 	-->
+	<% DBHandler.restartConnection(); %>
 	
 	<jsp:useBean id="user" class = "models.User" scope = "session"></jsp:useBean>	
 	<div id="wrapper" class = "menuDisplayed">

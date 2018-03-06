@@ -1,9 +1,9 @@
 <%@ page errorPage="error.jsp" %>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "db.*" %>    
-<%@ page import = "models.*" %>
-<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "models.*"  %>
+<%@ page import = "db.*" %>
+<%@ page import = "java.util.*" %>
   
 <!DOCTYPE html >
 <html>
@@ -20,8 +20,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-ui.js"></script>
-    
-	<script>
+    <script>
 	 $( function() {
 		  $( "#datepicker" ).datepicker({ minDate: +0, maxDate: "+1M" });
  	 })
@@ -30,7 +29,7 @@
 		  $( "#datepicker2" ).datepicker({ minDate: +0, maxDate: "+1M" });
  	 })
  	 
- 
+ 	 
 	</script>
 </head>
 <body style = "background:#eeeeee">
@@ -48,20 +47,14 @@
 	-->	
 	<% DBHandler.restartConnection(); %>
 	<%
+		
 		ArrayList<Room> rooms = DBHandler.shared.getRooms();
 		int noOfPages = (rooms.size()/4);
 		if(rooms.size() > (noOfPages *4))
 			noOfPages++;
 		
 		int s = 0;
-		int pageNo = 0;
 		
-		if(session.getAttribute("pageNo")!= null)
-		{	s = Integer.parseInt((String)session.getAttribute("pageNo"));
-			pageNo = s;
-			s--;
-			s = s*4;
-		}
 		
 	%>
 	
@@ -70,10 +63,12 @@
 	
 	  <div id="sidebar-wrapper2">
             <ul class="sidebar-nav">
-               <li><a href="http://localhost:8080/cloudapp/adminHome.jsp" class = "btn" role = "button">Home</a></li>
-               <li><a href="http://localhost:8080/cloudapp/addRoom.jsp" class = "btn" role = "button">Add Room</a></li>
-			   <li><a href="http://localhost:8080/cloudapp/viewRooms.jsp" class = "btn" style = "background-color:#006699" role = "button">View Rooms</a></li>          	
-            </ul>     
+               <li><a href="http://localhost:8080/cloudapp/customerHome.jsp" class = "btn" role = "button">Home</a></li>
+               <li><a href="http://localhost:8080/cloudapp/bookRooms.jsp" class = "btn" role = "button" style = "background-color:#006699">Book Room</a></li> 
+<!--                <li><a href="http://localhost:8080/WebProject/customSearch.jsp" class = "btn" role = "button">Custom Search</a></li> 
+ -->         
+<!--            	   <li><a href="http://localhost:9090/WebProject/changePassword.jsp" class = "btn" role = "button">Change Password</a></li>          		          
+ -->            </ul>     
         </div>
 		
 		 <!-- Page content -->
@@ -86,7 +81,7 @@
 			
 			 <div style = "float:right;">
                	<form action = "LogOut">
-                	<input type = "submit" style = "height:80px;" class = "btn btn-danger" value = "Logout" />
+                	<input type = "submit" class = "btn btn-danger" style = "height:80px;" value = "Logout" />
               	</form>
            	 </div>
 			<div class = "navbar-header">
@@ -97,9 +92,14 @@
 					Welcome, &nbsp 	
 					<jsp:getProperty property="firstName" name="user"/>	
 				</p>
-			</div>
-	   	 	
+				<img src = <%=user.getProfileImage() %> alt = "profilePic" width = "100px" height = "100px" />	</div>
+				
+				
+				
+           	 	
 		</nav>
+       
+		<%-- <input id = "bookingCount" type = "hidden" value ="<%=MyDBHandler.userBookingCount(user.get_id()) %>" />  --%>
         
         <div id="page-content-wrapper">
         		<div id = "heading" class = "col-md-10" style = "background-color:#006699; color:white; margin-left:95px;" >
@@ -181,7 +181,7 @@
  					
  					<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; padding-bottom:100px;">
  						<%for(int i = s,j=0;i<rooms.size() && i<(s+2);i++,j++){ %>
- 							<img src = "<%=rooms.get(i).getRoomImage()%>" id = "roomImg<%=j+1%>" height = 180px width = 310px style = "margin:20px" />
+ 							<img src = "<%=rooms.get(i).getRoomImage()%>" height = 150px width = 300px style = "margin:20px" />
  							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
  									<th>
@@ -223,26 +223,18 @@
  										<%=rooms.get(i).getSetBox() %>
  									</td>
  								</tr>
- 								<tr>
- 									<th>
- 										Price
- 									</th>
- 									<td id = "price<%=j+1%>">
- 										<%=rooms.get(i).getRoomPrice() %>
- 									</td>
- 								</tr>
  							</table>
- 							<%if(user.getRole() == 1) { %>
- 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:80px;">Edit Room</button>
- 							 <% } %>
- 							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-info">Check Availability</button>
+ 							<button id = "priceBtn<%=j+1 %>" class = "btn btn-success" style = "margin-left:15px">Get Price</button>
+ 							
+ 							<button id = "bookBtn<%=j+1 %>" class = "btn btn-info" style = "margin-left:15px">Book Room</button>
  							<br>
- 						<%} %>
+ 							<%} %>
+ 		
  					</div>
  					
  				<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; margin-bottom:20px;">
  						<%for(int i = s+2,j=2;i<rooms.size() && i<(s+4);i++,j++){ %>
- 							<img src = "<%=rooms.get(i).getRoomImage()%>" id = "roomImg<%=j+1%>" height = 150px width = 310px style = "margin:20px" />
+ 							<img src = "<%=rooms.get(i).getRoomImage()%>" height = 150px width = 300px style = "margin:20px" />
  							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
  									<th>
@@ -284,19 +276,9 @@
  										<%=rooms.get(i).getSetBox() %>
  									</td>
  								</tr>
- 								<tr>
- 									<th>
- 										Price
- 									</th>
- 									<td id = "price<%=j+1%>">
- 										<%=rooms.get(i).getRoomPrice() %>
- 									</td>
- 								</tr>
  							</table>
- 							<%if(user.getRole() == 1) { %>
- 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:80px;">Edit Room</button>
- 							 <% } %>
- 							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-info">Check Availability</button>
+ 							<button id = "priceBtn<%=j+1 %>" class = "btn btn-success" style = "margin-left:15px">Get Price</button>
+ 							<button id = "bookBtn<%=j+1 %>" class = "btn btn-info" style = "margin-left:15px">Book Room</button>
  							<br>
  							<%} %>
  					</div>
@@ -319,82 +301,68 @@
  				
  </div>
 </div>
-   <div class = "modal fade" id = "my-modal">
+   
+   
+    <div class = "modal fade" id = "price_modal">
 			<div class = "modal-dialog">
 				<div class = "modal-content">
 					<!-- header -->
 					<div class = "modal-header" style = "background:#006699;">
 						<button type = "button" class = "close" data-dismiss = "modal">&times;</button>
-						<h1 style = "color:white;">Edit Info</h1>
+						<h1 style = "color:white;">Room Price</h1>
 					</div>
 				
 				<!-- body -->
 					<div class = "modal-body">
-						<form id = "editRoomInput" >
- 							<label for = "roomType">RoomType: </label>
-						 	<input type="radio" name="roomType" value="Single" checked > Single
-  						 	<input type="radio" name="roomType" value="Double"> Double  						 	
-  						 	<input type="radio" name="roomType" value="Suite"> Suite
-  						 	<br>
-  						 	<label for = "roomImage">RoomImage Link:</label>
-  						 	<input name = "roomImage" id = "roomImage" maxlength = "200" size = "80" />
-  						 	<label for = "roomPrice">RoomPrice:</label>
-  						 	<input name = "roomPrice" id = "roomPrice" />
-  						 	<br>
-  						 	<label>Features:</label>
-  						 	<br>
-  						 	Balcony: <input type = "radio" name = "balcony" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "balcony" value = "No" />No  
-  						 	<br>
-  						 	HD SetBox: <input type = "radio" name = "setBox" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "setBox" value = "No" />No  
-  						 	<br>
-  						 	Central Cooling System: <input type = "radio" name = "coolingSystem" value = "Yes" checked />Yes &nbsp  <input type = "radio" name = "coolingSystem" value = "No" />No  
-  						 	<div class = "text-danger" id = "editRoomError">
-  						 	</div>
-  						 	<br>
- 							<input type = "submit" value = "Edit" class = "btn btn-success"/>
- 							<div class = "text-success" id = "editRoomSuccess">
- 							</div>
- 						</form> 		
+						<h4 id = "modal_msg"></h4>
 					</div>
 				
 				<!-- footer -->
 					<div class = "modal-footer">
-						<button class = "btn btn-info" data-dismiss = "modal" data-target = "#my-modal">Close</button>
-					</div>
-				
-			</div>
-		</div>
-	</div>
-    <div class = "modal fade" id = "avail_modal">
-			<div class = "modal-dialog">
-				<div class = "modal-content">
-					<!-- header -->
-					<div class = "modal-header" style = "background:#006699;">
-						<button type = "button" class = "close" data-dismiss = "modal">&times;</button>
-						<h1 style = "color:white;">Room Availability</h1>
-					</div>
-				
-				<!-- body -->
-					<div class = "modal-body">
-						From:<input type="text" id="datepicker" value = "MM/DD/YYYY"/>
-						&nbsp &nbsp To: <input type="text" id="datepicker2" value = "MM/DD/YYYY"/>
-						&nbsp &nbsp
-						<button id = "checkBtn" class = "btn btn-success">Check</button>
-						<div id = "modal_msg"></div>
-					</div>
-				
-				<!-- footer -->
-					<div class = "modal-footer">
-						<button class = "btn btn-info" data-dismiss = "modal" data-target = "#avail_modal">Close</button>
+						<button class = "btn btn-info" data-dismiss = "modal" data-target = "#price_modal">Close</button>
 					</div>
 				
 			</div>
 		</div>
 	</div>
    
+   <div class = "modal fade" id = "book_modal">
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+					<!-- header -->
+					<div class = "modal-header" style = "background:#006699;">
+						<button type = "button" class = "close" data-dismiss = "modal">&times;</button>
+						<h1 style = "color:white;">Book Room</h1>
+					</div>
+				
+				<!-- body -->
+					<div class = "modal-body">
+						<p>Book from: <input type="text" id="datepicker" value = "MM/DD/YYYY" />
+						&nbsp &nbsp
+						Book till: <input type = "text" id = "datepicker2" value = "MM/DD/YYYY" />
+						&nbsp
+						<button id = "getBooking" class = "btn btn-success">Book</button>
+						</p>
+						<div id = "book_msg" >
+							
+						</div>
+						<div id = "process_booking" class = "hidden">
+							<p> Please wait while your booking is processed <img src = "images/ajax-loader.gif" style = "height:70px; width:70px" />
+							</p>
+						</div>
+					</div>
+				
+				<!-- footer -->
+					<div class = "modal-footer">
+						<button class = "btn btn-info" data-dismiss = "modal" data-target = "#book_modal">Close</button>
+					</div>
+				
+			</div>
+		</div>
+	</div>
    	
    	  <script src = "js/home.js" type = "text/javascript"></script>
-      <script src = "js/viewRoom.js" type = "text/javascript"></script>   
+      <script src = "js/bookRoom.js" type = "text/javascript"></script>   
       <script>
       	function foo(pageNo)
       	{
@@ -406,7 +374,7 @@
       			data:{"pageNo":pageNo},
       			success: function(){
       				
-      				window.location.href = "http://localhost:8080/cloudapp/viewRooms2.jsp";
+      				window.location.href = "http://localhost:8080/cloudapp/bookRooms2.jsp";
       				
       			}
       			

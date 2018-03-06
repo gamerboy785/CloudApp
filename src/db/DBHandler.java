@@ -1,6 +1,7 @@
 package db;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.Date;
 
 import models.*;
 
@@ -30,6 +31,12 @@ public class DBHandler {
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		System.out.println("Connected to mysql database");
+	}
+	
+	public static void restartConnection() throws Exception {
+		if(conn.isClosed()) {
+			getConnection();
+		}
 	}
 	
 	public boolean foo() {
@@ -88,7 +95,17 @@ public class DBHandler {
 			System.out.println(e.getMessage());
 		}
 		return rooms;
-	}    
+	}  
+	
+	public Double getRoomPrice(int roomID) throws Exception {
+		PreparedStatement pst = conn.prepareStatement("select roomPrice from rooms where id = ?");
+		pst.setInt(1, roomID);
+		ResultSet rs = pst.executeQuery();
+		if(rs.last()) {
+			return rs.getDouble("roomPrice");
+		}
+		return (double) 0;
+	}
 	
 	public boolean addUser(User user) {
 		try {
@@ -129,6 +146,103 @@ public class DBHandler {
 			user.setRole(rs.getInt("role"));		
 		}
 		return user;
+	}
+	
+	public boolean bookRoom(int userID,int roomID,Calendar startDate,Calendar endDate)
+	{
+		try
+		{
+			Date utilStartDate = startDate.getTime();
+		    java.sql.Date sDate = new java.sql.Date(utilStartDate.getTime());			
+			Date utilEndDate = endDate.getTime();
+		    java.sql.Date eDate = new java.sql.Date(utilEndDate.getTime());
+			PreparedStatement pst = conn.prepareStatement("insert into roombookinginfo (startDate,endDate,isBooked,userId,roomId) values(?,?,?,?,?)");
+			pst.setDate(1, sDate);
+			pst.setDate(2, eDate);
+			pst.setString(3, "True");
+			pst.setInt(4, userID);
+			pst.setInt(5, roomID);
+			pst.executeUpdate();
+			return true;	
+			
+		}
+		catch(Exception e)
+		{		
+			e.printStackTrace();
+		}
+		
+		return false;	
+	}
+	
+	public boolean isAvailable(int roomID,Calendar startDate,Calendar endDate)
+	{
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		boolean isAvail = false;
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement("select * from roombookinginfo where roomId = ? and startDate >= ? and endDate <=? and isBooked = 'True'");
+			Date utilStartDate = startDate.getTime();
+		    java.sql.Date sDate = new java.sql.Date(utilStartDate.getTime());
+		    Date utilEndDate = endDate.getTime();
+		    java.sql.Date eDate = new java.sql.Date(utilEndDate.getTime());
+		    
+			pst.setInt(1, roomID);
+			pst.setDate(2, sDate);
+			pst.setDate(3, eDate);
+			ResultSet rs = pst.executeQuery();
+			if(rs.last())
+			{
+				return isAvail;
+			}
+			PreparedStatement pst2 = conn.prepareStatement("select * from roombookinginfo where roomId = ? and startDate >= ? and startDate <=? and isBooked = 'True'");
+			
+			pst2.setInt(1, roomID);
+			pst2.setDate(2, sDate);
+			pst2.setDate(3, eDate);
+	
+			rs = pst2.executeQuery();
+			if(rs.last())
+			{
+				return isAvail;
+			}
+			
+			PreparedStatement pst3 = conn.prepareStatement("select * from roombookinginfo where roomId = ? and endDate >= ? and endDate <=? and isBooked = 'True'");
+			pst3.setInt(1, roomID);
+			pst3.setDate(2, sDate);
+			pst3.setDate(3, eDate);
+	
+			rs = pst3.executeQuery();
+			if(rs.last())
+			{
+				return isAvail;
+			}
+			
+			PreparedStatement pst4 = conn.prepareStatement("select * from roombookinginfo where roomId = ? and startDate <= ? and endDate >=? and isBooked = 'True'");
+			pst4.setInt(1, roomID);
+			pst4.setDate(2, sDate);
+			pst4.setDate(3, eDate);
+	
+			rs = pst4.executeQuery();
+			if(rs.last())
+			{
+				return isAvail;
+			}
+			
+			isAvail = true;
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return isAvail;
+		
 	}
 	
 	public boolean updateRoom(Room room) {

@@ -46,7 +46,7 @@
 			throw new Exception();
 		  %>
 	-->	
-
+	<% DBHandler.restartConnection(); %>
 	<%
 		ArrayList<Room> rooms = DBHandler.shared.getRooms();
 		int noOfPages = (rooms.size()/4);
