@@ -35,8 +35,8 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li ><a href="http://localhost:8080/cloudapp/customerHome.jsp" class = "btn" style = "background-color:#006699" role = "button">Home</a></li>
-                <li ><a href="http://localhost:8080/cloudapp/bookRooms.jsp" class = "btn" role = "button">Book Room</a></li>
+                <li ><a href="https://guarded-stream-37896.herokuapp.com/customerHome.jsp" class = "btn" style = "background-color:#006699" role = "button">Home</a></li>
+                <li ><a href="https://guarded-stream-37896.herokuapp.com/bookRooms.jsp" class = "btn" role = "button">Book Room</a></li>
             </ul>     
         </div>
 		

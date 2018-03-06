@@ -141,11 +141,11 @@ $(document).ready(function(){
 				}
 				else if(data.role == "A")
 				{
-					 window.location.href = "http://localhost:8080/cloudapp/adminHome.jsp";
+					 window.location.href = "https://guarded-stream-37896.herokuapp.com/adminHome.jsp";
 				}
 				else
 				{
-					window.location.href = "http://localhost:8080/cloudapp/customerHome.jsp";
+					window.location.href = "https://guarded-stream-37896.herokuapp.com/customerHome.jsp";
 				}
 			}
 				

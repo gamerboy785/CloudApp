@@ -63,8 +63,8 @@
 	
 	  <div id="sidebar-wrapper2">
             <ul class="sidebar-nav">
-               <li><a href="http://localhost:8080/cloudapp/customerHome.jsp" class = "btn" role = "button">Home</a></li>
-               <li><a href="http://localhost:8080/cloudapp/bookRooms.jsp" class = "btn" role = "button" style = "background-color:#006699">Book Room</a></li> 
+               <li><a href="https://guarded-stream-37896.herokuapp.com/customerHome.jsp" class = "btn" role = "button">Home</a></li>
+               <li><a href="https://guarded-stream-37896.herokuapp.com/bookRooms.jsp" class = "btn" role = "button" style = "background-color:#006699">Book Room</a></li> 
 <!--                <li><a href="http://localhost:8080/WebProject/customSearch.jsp" class = "btn" role = "button">Custom Search</a></li> 
  -->         
 <!--            	   <li><a href="http://localhost:9090/WebProject/changePassword.jsp" class = "btn" role = "button">Change Password</a></li>          		          
@@ -374,7 +374,7 @@
       			data:{"pageNo":pageNo},
       			success: function(){
       				
-      				window.location.href = "http://localhost:8080/cloudapp/bookRooms2.jsp";
+      				window.location.href = "https://guarded-stream-37896.herokuapp.com/cloudapp/bookRooms2.jsp";
       				
       			}
       			

@@ -70,9 +70,9 @@
 	
 	  <div id="sidebar-wrapper2">
             <ul class="sidebar-nav">
-               <li><a href="http://localhost:8080/cloudapp/adminHome.jsp" class = "btn" role = "button">Home</a></li>
-               <li><a href="http://localhost:8080/cloudapp/addRoom.jsp" class = "btn" role = "button">Add Room</a></li>
-			   <li><a href="http://localhost:8080/cloudapp/viewRooms.jsp" class = "btn" style = "background-color:#006699" role = "button">View Rooms</a></li>          	
+               <li><a href="https://guarded-stream-37896.herokuapp.com/adminHome.jsp" class = "btn" role = "button">Home</a></li>
+               <li><a href="https://guarded-stream-37896.herokuapp.com/addRoom.jsp" class = "btn" role = "button">Add Room</a></li>
+			   <li><a href="https://guarded-stream-37896.herokuapp.com/viewRooms.jsp" class = "btn" style = "background-color:#006699" role = "button">View Rooms</a></li>          	
             </ul>     
         </div>
 		
@@ -406,7 +406,7 @@
       			data:{"pageNo":pageNo},
       			success: function(){
       				
-      				window.location.href = "http://localhost:8080/cloudapp/viewRooms2.jsp";
+      				window.location.href = "https://guarded-stream-37896.herokuapp.com/viewRooms2.jsp";
       				
       			}
       			
