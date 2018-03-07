@@ -57,6 +57,12 @@ public class DBHandler {
 	
 	public boolean addRoom(Room room) {
 		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 			PreparedStatement pst = conn.prepareStatement("insert into rooms (roomImage,roomType,roomPrice,balcony,setBox,coolingSystem)"
 					+ " values(?,?,?,?,?,?) ");
 			pst.setString(1,room.getRoomImage());
@@ -75,6 +81,12 @@ public class DBHandler {
 	}
 	
 	public ArrayList<Room> getRooms() {
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		ArrayList<Room>rooms = new ArrayList<Room>();
 		try {
 			Statement st = conn.createStatement();
@@ -98,6 +110,7 @@ public class DBHandler {
 	}  
 	
 	public Double getRoomPrice(int roomID) throws Exception {
+		DBHandler.restartConnection();
 		PreparedStatement pst = conn.prepareStatement("select roomPrice from rooms where id = ?");
 		pst.setInt(1, roomID);
 		ResultSet rs = pst.executeQuery();
@@ -108,6 +121,12 @@ public class DBHandler {
 	}
 	
 	public boolean addUser(User user) {
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			PreparedStatement pst = conn.prepareStatement("insert into users (username,password,profile,gender,firstname,lastname,role)"
 					+ " values(?,?,?,?,?,?,?) ");
@@ -129,6 +148,7 @@ public class DBHandler {
 	
 	public User getUser(String username, String password) throws Exception {
 		
+		DBHandler.restartConnection();
 		PreparedStatement pst = conn.prepareStatement("select * from users where username = ? and password = ?");
 		pst.setString(1, username);
 		pst.setString(2, password);
@@ -150,6 +170,12 @@ public class DBHandler {
 	
 	public boolean bookRoom(int userID,int roomID,Calendar startDate,Calendar endDate)
 	{
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try
 		{
 			Date utilStartDate = startDate.getTime();
@@ -246,7 +272,12 @@ public class DBHandler {
 	}
 	
 	public boolean updateRoom(Room room) {
-		
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			PreparedStatement pst = conn.prepareStatement("update rooms set roomImage = ?, roomType = ?,roomPrice = ?,balcony = ?,setBox = ?,coolingSystem = ? where id = ?");
 			pst.setString(1, room.getRoomImage());
@@ -266,6 +297,7 @@ public class DBHandler {
 	}
 	
 	public boolean hasUser(String username) throws Exception {
+		DBHandler.restartConnection();
 		PreparedStatement pst = conn.prepareStatement("select * from users where username = ?" );
 		pst.setString(1, username);
 		if (pst.executeQuery().last()) {
