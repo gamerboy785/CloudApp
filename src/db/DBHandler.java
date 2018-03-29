@@ -7,7 +7,7 @@ import models.*;
 
 public class DBHandler {
 
-	public static DBHandler shared = new DBHandler();
+	public static final DBHandler shared = new DBHandler();
 	
 	private static final String URL = "jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_4cc5e175fd48b99?";
 	private static final String USERNAME = "b7c6cf5b950cd5";
@@ -200,7 +200,7 @@ public class DBHandler {
 		return false;	
 	}
 	
-	public boolean isAvailable(int roomID,Calendar startDate,Calendar endDate)
+	public  boolean isAvailable(int roomID,Calendar startDate,Calendar endDate)
 	{
 		try {
 			DBHandler.restartConnection();
