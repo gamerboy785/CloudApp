@@ -37,7 +37,7 @@
             <ul class="sidebar-nav">
                 <li><a href="https://guarded-stream-37896.herokuapp.com/customerHome.jsp" class = "btn" style = "background-color:#006699" role = "button">Home</a></li>
                 <li><a href="https://guarded-stream-37896.herokuapp.com/bookRooms.jsp" class = "btn" role = "button">Book Room</a></li>
-                <li><a href="http://localhost:8080/cloudapp/reviews.jsp" class = "btn" role = "button">Reviews Section</a></li>  
+                <li><a href="https://guarded-stream-37896.herokuapp.com/reviews.jsp" class = "btn" role = "button">Reviews Section</a></li>  
             </ul>     
         </div>
 		
