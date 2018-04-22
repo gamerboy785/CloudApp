@@ -155,7 +155,7 @@ $(document).ready(function(){
 		
 		btnAppID = 1;
 		roomID = parseInt($("#room1").text());
-		$("#my-modal2").modal('show');
+		$("#my-modal").modal('show');
 		
 		
 	});
@@ -164,7 +164,7 @@ $(document).ready(function(){
 		
 		btnAppID = 2;
 		roomID = parseInt($("#room2").text());
-		$("#my-modal2").modal('show');
+		$("#my-modal").modal('show');
 		
 		
 		});
@@ -172,7 +172,7 @@ $(document).ready(function(){
 	
 		btnAppID = 3;
 		roomID = parseInt($("#room3").text());
-		$("#my-modal2").modal('show');
+		$("#my-modal").modal('show');
 	
 	
 	});
@@ -181,7 +181,7 @@ $(document).ready(function(){
 	
 		btnAppID = 4;
 		roomID = parseInt($("#room4").text());
-		$("#my-modal2").modal('show');
+		$("#my-modal").modal('show');
 	
 	
 	});

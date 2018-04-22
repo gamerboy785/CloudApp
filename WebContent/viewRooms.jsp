@@ -228,7 +228,7 @@
  								</tr>
  							</table>
  							<%if(user.getRole() == 1) { %>
- 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:5px;">Edit Room</button>
+ 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:15px;">Edit Room</button>
  							 <% } %>
  							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-info">Check Availability</button>
  							<br>
@@ -289,7 +289,7 @@
  								</tr>
  							</table>
  							<%if(user.getRole() == 1) { %>
- 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:5px;">Edit Room</button>
+ 							 <button id = "btn<%=j+1%>" class = "btn btn-success" style = "margin-left:15px;">Edit Room</button>
  							 <% } %>
  							<button id = "availBtn<%=j+1%>" style = "margin-left:15px;" class = "btn btn-info">Check Availability</button>
  							<br>
