@@ -171,10 +171,11 @@
 
     		<div class = "container" style = "padding-left: 100px; padding-right:130px">
  				<div class = "col-md-12" style = "background-color:white">
- 					<h1 style = "background-color:black; color:white"> Room</h1>
+ 					<h1 style = "background-color:black; color:white"> Users Section</h1>
  					
  					<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; padding-bottom:100px;">
  						<%for(int i = s,j=0;i<users.size() && i<(s+2);i++,j++){ %>
+ 							<br>
  							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
  									<th>
@@ -225,7 +226,6 @@
  									</td>
  								</tr>
  							</table>
- 							<br>
  							<button id = "removeBtn<%=j+1 %>" class = "btn btn-danger" style = "margin-left:15px">Remove User</button> 							
  							<br>
  							<%} %>
@@ -234,7 +234,8 @@
  					
  				<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; margin-bottom:20px;">
  						<%for(int i = s+2,j=2;i<users.size() && i<(s+4);i++,j++){ %>
- 							 							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
+ 							 	<br>
+ 							 	<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
  									<th>
  										userID
@@ -286,6 +287,7 @@
  							</table>
  							<br>
  							<button id = "removeBtn<%=j+1 %>" class = "btn btn-danger" style = "margin-left:15px">Remove User</button> 							
+ 							<br>
  							<br>
  							<%} %>
  					</div>
