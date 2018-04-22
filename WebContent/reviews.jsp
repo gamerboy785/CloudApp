@@ -31,6 +31,7 @@
 		  %>
 	-->
 	<% 
+		DBHandler.restartConnection();
 		ArrayList<Review> reviews = DBHandler.shared.getReviews();
 		ArrayList<Integer> ratings = DBHandler.shared.getRatingCounter();
 	%>
