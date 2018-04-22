@@ -54,8 +54,14 @@
 			noOfPages++;
 		
 		int s = 0;
+		int pageNo = 0;
 		
-		
+		if(session.getAttribute("pageNo")!= null)
+		{	s = Integer.parseInt((String)session.getAttribute("pageNo"));
+			pageNo = s;
+			s--;
+			s = s*4;
+		}
 	%>
 	
 	<jsp:useBean id="user" class = "models.User" scope = "session"></jsp:useBean>	

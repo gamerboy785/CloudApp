@@ -109,6 +109,40 @@ public class DBHandler {
 		return rooms;
 	}  
 	
+	public ArrayList<User> getUsers() {
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ArrayList<User>users = new ArrayList<User>();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery("select * from users");
+			while (rs.next()) {
+				int role = rs.getInt("role");
+				if(role == 1) {
+					continue;
+				}
+				int id = rs.getInt("id");
+				String firstName = rs.getString("firstname");
+				String lastName = rs.getString("lastname");
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+				String gender = rs.getString("gender");
+				String profile = rs.getString("profile");
+				User user = new User(id,firstName,lastName,gender, role, username,
+						password,profile);
+				users.add(user);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return users;
+	}
+	
 	public Double getRoomPrice(int roomID) throws Exception {
 		DBHandler.restartConnection();
 		PreparedStatement pst = conn.prepareStatement("select roomPrice from rooms where id = ?");
