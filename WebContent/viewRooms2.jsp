@@ -244,7 +244,7 @@
  					
  				<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; margin-bottom:20px;">
  						<%for(int i = s+2,j=2;i<rooms.size() && i<(s+4);i++,j++){ %>
- 							<img src = "<%=rooms.get(i).getRoomImage()%>" id = "roomImg<%=j+1%>" height = 150px width = 310px style = "margin:20px" />
+ 							<img src = "<%=rooms.get(i).getRoomImage()%>" id = "roomImg<%=j+1%>" height = 180px width = 310px style = "margin:20px" />
  							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
  									<th>
