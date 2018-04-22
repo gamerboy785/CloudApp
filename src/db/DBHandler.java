@@ -170,12 +170,6 @@ public class DBHandler {
 	
 	public boolean bookRoom(int userID,int roomID,Calendar startDate,Calendar endDate)
 	{
-		try {
-			DBHandler.restartConnection();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		try
 		{
 			Date utilStartDate = startDate.getTime();
@@ -202,12 +196,7 @@ public class DBHandler {
 	
 	public  boolean isAvailable(int roomID,Calendar startDate,Calendar endDate)
 	{
-		try {
-			DBHandler.restartConnection();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 		boolean isAvail = false;
 		try
 		{
@@ -272,12 +261,7 @@ public class DBHandler {
 	}
 	
 	public boolean updateRoom(Room room) {
-		try {
-			DBHandler.restartConnection();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 		try {
 			PreparedStatement pst = conn.prepareStatement("update rooms set roomImage = ?, roomType = ?,roomPrice = ?,balcony = ?,setBox = ?,coolingSystem = ? where id = ?");
 			pst.setString(1, room.getRoomImage());
@@ -304,6 +288,156 @@ public class DBHandler {
 			return true;
 		}
 		return false;
+	}
+	
+	public ArrayList<Review> getReviews() {
+		
+		ArrayList<Review> list = new ArrayList<Review>();
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			PreparedStatement pst = conn.prepareStatement("select * from reviews order by dateCreated desc;");
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				int userId = rs.getInt("userid");
+				String comment = rs.getString("comment");
+				String fullname = rs.getString("fullname");
+				int rating = rs.getInt("rating");
+				Date date = rs.getDate("dateCreated");
+				Review obj = new Review(userId, fullname, comment,date, rating);
+				list.add(obj);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	public boolean addReview(Review review) {
+		try
+		{
+			Date date = review.getDateCreated();
+		    java.sql.Date sDate = new java.sql.Date(date.getTime());			
+			
+			PreparedStatement pst = conn.prepareStatement("insert into reviews (userid,fullname,comment,rating,dateCreated) values(?,?,?,?,?)");
+			pst.setInt(1, review.getUserId());
+			pst.setString(2, review.getFullname());
+			pst.setString(3, review.getComment());
+			pst.setInt(4, (int) review.getRating());
+			pst.setDate(5, sDate);
+			pst.executeUpdate();
+			return true;	
+			
+		}
+		catch(Exception e)
+		{		
+			e.printStackTrace();
+		}
+		
+		return false;	
+	}
+	
+	public int getTotalRatings() {
+		int count = 0;
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			PreparedStatement pst = conn.prepareStatement("select * from reviews order by dateCreated desc;");
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				count++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public Double getAverageRating() {
+		int sum = 0;
+		int count = 0;
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			PreparedStatement pst = conn.prepareStatement("select * from reviews order by dateCreated desc;");
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				sum += rs.getInt("rating");
+				count++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(count == 0) {
+			return (double) 0;
+		}
+		return (double) (sum/count);
+	}
+	
+	public ArrayList<Integer> getRatingCounter() {
+		int star5 = 0;
+		int star4 = 0;
+		int star3 = 0;
+		int star2 = 0;
+		int star1 = 0;
+
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			PreparedStatement pst = conn.prepareStatement("select * from reviews order by dateCreated desc;");
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				int rating = rs.getInt("rating");
+				if(rating == 1) {
+					star1++;
+				}
+				else if (rating == 2) {
+					star2++;
+				}
+				else if(rating == 3) {
+					star3++;
+				}
+				else if(rating == 4) {
+					star4++;
+				}
+				else if(rating ==5) {
+					star5++;
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		list.add(star5);
+		list.add(star4);
+		list.add(star3);
+		list.add(star2);
+		list.add(star1);
+
+		return list;
 	}
 	
 }

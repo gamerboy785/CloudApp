@@ -145,7 +145,7 @@ $(document).ready(function(){
 				}
 				else
 				{
-					window.location.href = "https://guarded-stream-37896.herokuapp.com/customerHome.jsp";
+					window.location.href = "http://localhost:8080/cloudapp/customerHome.jsp";
 				}
 			}
 				
