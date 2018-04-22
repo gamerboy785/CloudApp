@@ -397,6 +397,8 @@
    	
    	  <script src = "js/home.js" type = "text/javascript"></script>
       <script src = "js/viewRoom.js" type = "text/javascript"></script>   
+      <script src = "js/editRoom.js" type = "text/javascript"></script>   
+      
       <script>
       	function foo(pageNo)
       	{
