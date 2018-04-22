@@ -309,7 +309,7 @@
 							<ul class = "pagination">
 						
 								<% for(int i = 1;i<=noOfPages;i++){%>
-									<%if(i==1){ %>	
+									<%if(i==pageNo){ %>	
 									<li class = "active"><a href="#" onclick = "foo('<%=i%>')"><%=i %></a></li>
 								<% }else {%>
 									<li><a href="#" onclick = "foo('<%=i%>')"><%=i %></a></li>									
