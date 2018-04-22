@@ -39,7 +39,7 @@
                 <li ><a href="https://guarded-stream-37896.herokuapp.com/adminHome.jsp" class = "btn" style = "background-color:#006699" role = "button">Home</a></li>
                 <li ><a href="https://guarded-stream-37896.herokuapp.com/addRoom.jsp" class = "btn" role = "button">Add Room</a></li>
             	<li><a href="https://guarded-stream-37896.herokuapp.com/viewRooms.jsp" class = "btn" role = "button">View Rooms</a></li>  
-			   <li><a href="https://guarded-stream-37896.herokuapp.com/removeUsers.jsp" class = "btn" style = "background-color:#006699" role = "button">View Rooms</a></li>          	
+			   <li><a href="https://guarded-stream-37896.herokuapp.com/removeUsers.jsp" class = "btn" role = "button">Users Section</a></li>          	
             	        	
             </ul>     
         </div>

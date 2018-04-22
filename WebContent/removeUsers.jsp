@@ -52,10 +52,10 @@
 	
 	  <div id="sidebar-wrapper2">
             <ul class="sidebar-nav">
-               <li><a href="https://guarded-stream-37896.herokuapp.com/customerHome.jsp" class = "btn" role = "button">Home</a></li>
-               <li><a href="https://guarded-stream-37896.herokuapp.com/bookRooms.jsp" class = "btn" role = "button" style = "background-color:#006699">Book Room</a></li> 
-			   <li><a href="https://guarded-stream-37896.herokuapp.com/reviews.jsp" class = "btn" role = "button">Reviews Section</a></li>  
-			   <li><a href="https://guarded-stream-37896.herokuapp.com/removeUsers.jsp" class = "btn" role = "button">Reviews Section</a></li>  
+               <li ><a href="https://guarded-stream-37896.herokuapp.com/adminHome.jsp" class = "btn" role = "button">Home</a></li>
+                <li ><a href="https://guarded-stream-37896.herokuapp.com/addRoom.jsp" class = "btn" role = "button">Add Room</a></li>
+            	<li><a href="https://guarded-stream-37896.herokuapp.com/viewRooms.jsp" class = "btn" role = "button">View Rooms</a></li>  
+			   <li><a href="https://guarded-stream-37896.herokuapp.com/removeUsers.jsp" class = "btn"  style = "background-color:#006699" role = "button">Users Section</a></li>          	
 
 <!--           
      <li><a href="http://localhost:8080/WebProject/customSearch.jsp" class = "btn" role = "button">Custom Search</a></li> 
@@ -225,6 +225,7 @@
  									</td>
  								</tr>
  							</table>
+ 							<br>
  							<button id = "removeBtn<%=j+1 %>" class = "btn btn-danger" style = "margin-left:15px">Remove User</button> 							
  							<br>
  							<%} %>
@@ -283,6 +284,7 @@
  									</td>
  								</tr>
  							</table>
+ 							<br>
  							<button id = "removeBtn<%=j+1 %>" class = "btn btn-danger" style = "margin-left:15px">Remove User</button> 							
  							<br>
  							<%} %>
