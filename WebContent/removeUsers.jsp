@@ -284,8 +284,7 @@
  										<%=users.get(i).getPassword() %>
  									</td>
  								</tr>
- 							</table>
- 							<br>
+ 							</table> 
  							<button id = "removeBtn<%=j+1 %>" class = "btn btn-danger" style = "margin-left:15px">Remove User</button> 							
  							<br>
  							<%} %>

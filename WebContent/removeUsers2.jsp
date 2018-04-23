@@ -293,7 +293,6 @@
  									</td>
  								</tr>
  							</table>
- 							<br>
  							<button id = "removeBtn<%=j+1 %>" class = "btn btn-danger" style = "margin-left:15px">Remove User</button> 							
  							<br>
  							<%} %>
@@ -353,8 +352,7 @@
       			data:{"pageNo":pageNo},
       			success: function(){
       				
-      				window.location.href = "https://guarded-stream-37896.herokuapp.com/cloudapp/removeUsers2.jsp";
-      				
+      				window.location.href = "https://guarded-stream-37896.herokuapp.com/removeUsers2.jsp";      				
       			}
       			
       		});
