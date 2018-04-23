@@ -143,6 +143,25 @@ public class DBHandler {
 		return users;
 	}
 	
+	public boolean removeUser(int id) {
+		try {
+			DBHandler.restartConnection();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			PreparedStatement pst = conn.prepareStatement("delete from users where id = ?");
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+	
 	public Double getRoomPrice(int roomID) throws Exception {
 		DBHandler.restartConnection();
 		PreparedStatement pst = conn.prepareStatement("select roomPrice from rooms where id = ?");
