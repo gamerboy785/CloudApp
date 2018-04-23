@@ -273,7 +273,7 @@
  										username
  									</th>
  									<td id = "setBox<%=j+1%>">
- 										<%=users.get(i).getPassword() %>
+ 										<%=users.get(i).getUsername() %>
  									</td>
  								</tr>
  								<tr>
