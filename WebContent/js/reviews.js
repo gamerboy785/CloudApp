@@ -29,7 +29,8 @@ $(document).ready(function(){
 					$("#comment_response").removeClass("text-danger");
 					$("#comment_response").addClass("text-success");
 					document.getElementById("comment_response").innerHTML = "Congratulations, your comment and review have been added.";
-					
+					window.location.href = "https://guarded-stream-37896.herokuapp.com/reviews.jsp";
+					return false;
 				}
 				else
 				{
@@ -37,7 +38,6 @@ $(document).ready(function(){
 					$("#comment_response").addClass("text-danger");
 					document.getElementById("comment_response").innerHTML = "*An unexpected error occurred, please try again.";
 					$("#review_modal").modal('hide');
-					window.location.href = "https://guarded-stream-37896.herokuapp.com/reviews.jsp";
 				}
 			}
 			
