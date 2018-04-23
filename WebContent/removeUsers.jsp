@@ -38,12 +38,11 @@
 	<%
 		
 		ArrayList<User> users = DBHandler.shared.getUsers();
-		int noOfPages = (users.size()/4);
-		if(users.size() > (noOfPages *4))
+		int noOfPages = (users.size()/6);
+		if(users.size() > (noOfPages *6))
 			noOfPages++;
-		
-		int s = 0;
-		
+	
+		int s = 0;		
 		
 	%>
 	

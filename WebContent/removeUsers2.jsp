@@ -38,8 +38,8 @@
 	<%
 		
 		ArrayList<User> users = DBHandler.shared.getUsers();
-		int noOfPages = (users.size()/4);
-		if(users.size() > (noOfPages *4))
+		int noOfPages = (users.size()/6);
+		if(users.size() > (noOfPages *6))
 			noOfPages++;
 		
 		int s = 0;
@@ -49,7 +49,7 @@
 		{	s = Integer.parseInt((String)session.getAttribute("pageNo"));
 			pageNo = s;
 			s--;
-			s = s*4;
+			s = s*6;
 		}
 		
 		
