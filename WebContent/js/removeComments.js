@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	function removeComment(userID)
+	function removeComment(commentID)
 	{
 		$.ajax({
 			
@@ -26,24 +26,28 @@ $(document).ready(function(){
 	$("#removeBtn1").click(function(){
 		
 		var commentID = $("#comment1").val();
+		alert(commentID);
 		removeComment(commentID);		
 	});
 	
 	$("#removeBtn2").click(function(){
 		
 		var commentID = $("#comment2").val();
+		alert(commentID);
 		removeComment(commentID);		
 	});
 	
 	$("#removeBtn3").click(function(){
 		
 		var commentID = $("#comment3").val();
+		alert(commentID);
 		removeComment(commentID);		
 	});
 
 	$("#removeBtn4").click(function(){
 	
 		var commentID = $("#comment4").val();
+		alert(commentID);
 		removeComment(commentID);		
 	
 	});
