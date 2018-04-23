@@ -241,7 +241,7 @@
  					</div>
  					
  				<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; margin-bottom:20px;">
- 						<%for(int i = s+3,j=3;i<users.size() && i<(s+5);i++,j++){ %>
+ 						<%for(int i = s+3,j=3;i<users.size() && i<(s+6);i++,j++){ %>
  							 	<br>
  							 	<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
  								<tr>
