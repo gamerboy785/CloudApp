@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 
 public class Review {
+	private int id;
 	private int userId;
 	private String fullname;
 	private String comment;
@@ -46,6 +47,14 @@ public class Review {
 		this.dateCreated = dateCreated;
 		this.rating = rating;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 	
 	
 }

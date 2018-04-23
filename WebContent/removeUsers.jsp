@@ -55,6 +55,7 @@
                 <li ><a href="https://guarded-stream-37896.herokuapp.com/addRoom.jsp" class = "btn" role = "button">Add Room</a></li>
             	<li><a href="https://guarded-stream-37896.herokuapp.com/viewRooms.jsp" class = "btn" role = "button">View Rooms</a></li>  
 			   <li><a href="https://guarded-stream-37896.herokuapp.com/removeUsers.jsp" class = "btn"  style = "background-color:#006699" role = "button">Users Section</a></li>          	
+   			   	<li><a href="https://guarded-stream-37896.herokuapp.com/removeComments.jsp" class = "btn" role = "button">Comments Section</a></li>          	 	
 
 <!--           
      <li><a href="http://localhost:8080/WebProject/customSearch.jsp" class = "btn" role = "button">Custom Search</a></li> 

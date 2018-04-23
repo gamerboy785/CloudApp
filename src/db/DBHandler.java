@@ -356,12 +356,14 @@ public class DBHandler {
 			PreparedStatement pst = conn.prepareStatement("select * from reviews order by dateCreated desc;");
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
+				int id = rs.getInt("id");
 				int userId = rs.getInt("userid");
 				String comment = rs.getString("comment");
 				String fullname = rs.getString("fullname");
 				int rating = rs.getInt("rating");
 				Date date = rs.getDate("dateCreated");
 				Review obj = new Review(userId, fullname, comment,date, rating);
+				obj.setId(id);
 				list.add(obj);
 			}
 		} catch (SQLException e) {
