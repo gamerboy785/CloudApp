@@ -173,7 +173,7 @@
  				<div class = "col-md-12" style = "background-color:white">
  					<h1 style = "background-color:black; color:white"> Users Section</h1>
  					
- 					<div class = "col-md-6" style = "height:950px; background-color:#eeeeee; padding-bottom:100px;">
+ 					<div class = "col-md-6" style = "height:650px; background-color:#eeeeee; padding-bottom:100px;">
  						<%for(int i = s,j=0;i<users.size() && i<(s+2);i++,j++){ %>
  							<br>
  							<table class = "table table-condensed" style = "background-color:white; width:320px; padding:20px; margin-left:15px" >
