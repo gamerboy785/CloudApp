@@ -21,6 +21,8 @@ $(document).ready(function(){
 			}
 			
 		});
+		window.location.href = "https://guarded-stream-37896.herokuapp.com/removeUsers.jsp"
+		return false;
 	}
 	
 	$("#removeBtn1").click(function(){
