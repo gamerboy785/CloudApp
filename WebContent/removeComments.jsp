@@ -251,7 +251,7 @@
 							<cite><%=reviews.get(i).getDateCreated() %></cite>
 						</footer>
 					</blockquote>
-					<input type = "text" id = "comment<%=j+1%>" value = "<%=reviews.get(i).getId()%>" />
+					<input class = "hidden" type = "text" id = "comment<%=j+1%>" value = "<%=reviews.get(i).getId()%>" />
 					<button id = "removeBtn<%=j+1%>" class = "btn btn-danger">Delete Comment</button>
  				<br>
  				<%}%>

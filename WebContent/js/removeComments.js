@@ -14,7 +14,8 @@ $(document).ready(function(){
 					alert("Couldnot delete comment, server is down !")
 					return;
 				}else {
-					window.location.href = "https://guarded-stream-37896.herokuapp.com/removeComments.jsp"
+					alert("Comment deletion successful.");
+					window.location.href = "https://guarded-stream-37896.herokuapp.com/removeComments.jsp";
 					return false;
 				}
 			}
@@ -26,28 +27,24 @@ $(document).ready(function(){
 	$("#removeBtn1").click(function(){
 		
 		var commentID = $("#comment1").val();
-		alert(commentID);
 		removeComment(commentID);		
 	});
 	
 	$("#removeBtn2").click(function(){
 		
 		var commentID = $("#comment2").val();
-		alert(commentID);
 		removeComment(commentID);		
 	});
 	
 	$("#removeBtn3").click(function(){
 		
 		var commentID = $("#comment3").val();
-		alert(commentID);
 		removeComment(commentID);		
 	});
 
 	$("#removeBtn4").click(function(){
 	
 		var commentID = $("#comment4").val();
-		alert(commentID);
 		removeComment(commentID);		
 	
 	});

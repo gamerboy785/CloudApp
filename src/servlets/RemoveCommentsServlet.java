@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+
+import db.DBHandler;
 
 /**
  * Servlet implementation class RemoveCommentsServlet
@@ -31,7 +34,10 @@ public class RemoveCommentsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.valueOf((String)request.getParameter("commentID"));
-		System.out.println(id);
+		boolean isSuccess = DBHandler.shared.removeComment(id);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("isSuccess", isSuccess);
+		toJson(response,map);
 	}
 
 	/**
