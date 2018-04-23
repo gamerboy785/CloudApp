@@ -383,7 +383,7 @@
       			data:{"pageNo":pageNo},
       			success: function(){
       				
-      				window.location.href = "https://guarded-stream-37896.herokuapp.com/cloudapp/bookRooms2.jsp";
+      				window.location.href = "https://guarded-stream-37896.herokuapp.com/bookRooms2.jsp";
       				
       			}
       			
